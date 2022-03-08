@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>EXCEL</title>
+</head>
+<body>
+  <div id="app" class="container">
+    <div class="excel">
+      <div class="excel__top-container">
+        <div class="header">
+          <input class="header__input" type="text" value="Новая таблица">
+
+          <div class="header__button-container">
+            <button class="header__button" type="button">
+              <span class="material-icons">delete</span>
+            </button>
+
+            <button class="header__button" type="button">
+              <span class="material-icons">exit_to_app</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button class="toolbar__button" type="button">
+            <span class="material-icons">format_bold</span>
+          </button>
+
+          <button class="toolbar__button" type="button">
+            <span class="material-icons">format_italic</span>
+          </button>
+
+          <button class="toolbar__button" type="button">
+            <span class="material-icons">format_underlined</span>
+          </button>
+
+          <button class="toolbar__button" type="button">
+            <span class="material-icons">format_align_left</span>
+          </button>
+
+          <button class="toolbar__button" type="button">
+            <span class="material-icons">format_align_center</span>
+          </button>
+
+          <button class="toolbar__button" type="button">
+            <span class="material-icons">format_align_right</span>
+          </button>
+        </div>
+
+        <div class="formula">
+          <div class="formula__label">fx</div>
+
+          <div class="formula__input" contenteditable="true" spellcheck="false"></div>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="table__row">
+          <div class="table__row-numbering"></div>
+
+          <div class="table__row-content">
+            <div class="table__column">A</div>
+            <div class="table__column">B</div>
+            <div class="table__column">C</div>
+          </div>
+        </div>
+
+        <div class="table__row">
+          <div class="table__row-numbering">1</div>
+
+          <div class="table__row-content">
+            <div class="table__cell selected" contenteditable="true">A1</div>
+            <div class="table__cell" contenteditable="true">B1</div>
+            <div class="table__cell" contenteditable="true">C1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

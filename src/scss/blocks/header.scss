@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: 1px solid $border-color;
+}
+
+.header__input {
+  padding: 2px 8px;
+  font-size: 18px;
+  line-height: 22px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  outline: none;
+
+  &:hover {
+    border: 1px solid $border-color;
+  }
+
+  &:focus {
+    border: 2px solid #1a73e8;
+  }
+}
+
+.header__button-container {
+  display: flex;
+  grid-column-gap: 5px;
+}
+
+.header__button {
+  @include button(red)
+}

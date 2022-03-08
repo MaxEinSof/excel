@@ -1,0 +1,21 @@
+.formula {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  border-bottom: 1px solid $border-color;
+}
+
+.formula__label {
+  width: $numbering-cell-width;
+  font-size: 18px;
+  font-style: italic;
+  text-align: center;
+  color: #888;
+  border-right: 1px solid $border-color;
+}
+
+.formula__input {
+  width: 100%;
+  padding: 2px 8px;
+  outline: none;
+}
