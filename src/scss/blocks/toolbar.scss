@@ -1,0 +1,10 @@
+.toolbar {
+  display: flex;
+  grid-column-gap: 5px;
+  padding: 5px 10px;
+  border-bottom: 1px solid $border-color;
+}
+
+.toolbar__button {
+  @include button(green)
+}
