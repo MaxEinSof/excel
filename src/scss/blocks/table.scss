@@ -1,4 +1,6 @@
 .table {
+  position: relative;
+  flex-grow: 1;
   padding-bottom: 2px;
   overflow-x: auto;
 }
@@ -9,7 +11,22 @@
   height: $row-height;
 }
 
+.table__abc-row {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding-left: $numbering-cell-width;
+
+  .table__row-numbering {
+    position: fixed;
+    left: 0;
+    height: $row-height;
+  }
+}
+
 .table__row-numbering {
+  position: sticky;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +34,7 @@
   background: #f8f9fa;
   border: 1px solid $border-color;
   border-top: none;
+  border-left: none;
 }
 
 .table__row-content {
