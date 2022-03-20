@@ -21,6 +21,7 @@ html {
 }
 
 body {
+  min-height: 100vh;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #000;
@@ -28,6 +29,9 @@ body {
 
 .excel {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .excel__top-container {

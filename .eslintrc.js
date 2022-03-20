@@ -6,6 +6,7 @@ module.exports = {
   },
   parserOptions: {
     parser: '@babel/eslint-parser',
+    ecmaVersion: 'latest',
     requireConfigFile: false,
     sourceType: 'module'
   },
@@ -14,6 +15,12 @@ module.exports = {
     'semi': 'off',
     'comma-dangle': 'off',
     'require-jsdoc': 'off',
-    'linebreak-style': ['error', 'windows']
+    'operator-linebreak': 'off',
+    'object-curly-spacing': 'off',
+    'linebreak-style': ['error', 'windows'],
+    'max-len': ['error', {
+      'ignoreStrings': true,
+      'ignoreTemplateLiterals': true
+    }]
   }
 }
