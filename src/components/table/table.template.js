@@ -5,16 +5,18 @@ const CODES = {
 
 const columnsNumber = CODES.Z - CODES.A + 1
 
-function getCellTemplate() {
+function getCellTemplate(letter) {
   return `
-    <div class="table__cell" contenteditable="true"></div>
+    <div class="table__cell" contenteditable="true" data-column="${letter}"></div>
   `
 }
 
-function getColumnTemplate(content) {
+function getColumnTemplate(letter) {
   return `
-    <div class="table__column">
-      ${content}
+    <div class="table__column" data-type="resizable">
+      ${letter}
+
+      <div class="table__column-resize" data-resize="col"></div>
     </div>
   `
 }
@@ -23,10 +25,12 @@ function getRowTemplate(content, number = '') {
   const isAbcRow = !number
 
   return `
-    <div class="table__row ${isAbcRow ? 'table__abc-row' : ''}">
+    <div class="table__row ${isAbcRow ? 'table__abc-row' : ''}" ${!isAbcRow ? 'data-type="resizable"' : ''}>
       <div class="table__row-numbering">
         ${number}
       </div>
+      
+      ${!isAbcRow ? '<div class="table__row-resize" data-resize="row"></div>' : ''}
 
       <div class="table__row-content">
         ${content}
@@ -35,10 +39,14 @@ function getRowTemplate(content, number = '') {
   `
 }
 
-function getAbcRowTemplate() {
-  const abcColumnsTemplate = new Array(columnsNumber)
+function getAbcArray() {
+  return new Array(columnsNumber)
       .fill('')
       .map((_, index) => String.fromCharCode(CODES.A + index))
+}
+
+function getAbcRowTemplate() {
+  const abcColumnsTemplate = getAbcArray()
       .map(getColumnTemplate)
       .join('')
 
@@ -49,8 +57,7 @@ function getCellsRowTemplates(rowsNumber) {
   const templates = []
 
   for (let i = 0; i < rowsNumber; i++) {
-    const cellsTemplate = new Array(columnsNumber)
-        .fill('')
+    const cellsTemplate = getAbcArray()
         .map(getCellTemplate)
         .join('')
 

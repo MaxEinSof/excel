@@ -41,8 +41,37 @@ class Dom {
     this.$el.removeEventListener(eventType, callback)
   }
 
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
+  }
+
+  closest(selector) {
+    return $(this.$el.closest(selector))
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect()
+  }
+
+  css(value) {
+    Object.assign(this.$el.style, value)
+    return this
+  }
+
   get class() {
     return this.$el.className
+  }
+
+  get textContent() {
+    return this.$el.textContent.trim()
+  }
+
+  get dataset() {
+    return this.$el.dataset
+  }
+
+  set dataset(value) {
+    Object.assign(this.$el.dataset, value)
   }
 }
 
