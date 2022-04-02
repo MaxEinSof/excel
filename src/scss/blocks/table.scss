@@ -6,8 +6,9 @@
 }
 
 .table__row {
+  position: relative;
   display: flex;
-  min-height: 20px;
+  min-height: $row-min-height;
   height: $row-height;
 }
 
@@ -20,6 +21,7 @@
   .table__row-numbering {
     position: fixed;
     left: 0;
+    z-index: 2;
     height: $row-height;
   }
 }
@@ -28,13 +30,16 @@
   position: sticky;
   left: 0;
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  min-width: $numbering-cell-width;
-  background: #f8f9fa;
+  width: $numbering-cell-width;
+  background: $service-cells-color;
   border: 1px solid $border-color;
   border-top: none;
   border-left: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .table__row-content {
@@ -42,19 +47,22 @@
 }
 
 .table__column {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 40px;
+  min-width: $cell-min-width;
   width: $cell-width;
-  background: #f8f9fa;
+  background: $service-cells-color;
   border: 1px solid $border-color;
   border-top: none;
   border-left: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .table__cell {
-  min-width: 40px;
+  min-width: $cell-min-width;
   width: $cell-width;
   padding: 5px;
   white-space: nowrap;
@@ -65,6 +73,76 @@
 
   &.selected {
     border: none;
-    outline: 2px solid #3c74ff;
+    outline: 2px solid $primary-color;
+  }
+}
+
+.table__column-resize,
+.table__row-resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: $primary-color;
+  opacity: 0;
+
+  &:hover,
+  &:active {
+    opacity: 1;
+  }
+
+  &:active {
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: $primary-color;
+    }
+  }
+}
+
+.table__column-resize {
+  top: 0;
+  width: 4px;
+  cursor: col-resize;
+
+  &:active {
+    &::before {
+      content: '';
+      position: absolute;
+      right: -4px;
+      width: 4px;
+      height: 100%;
+      cursor: col-resize;
+    }
+
+    &::after {
+      left: 50%;
+      width: 1px;
+      height: 100vh;
+    }
+  }
+}
+
+.table__row-resize {
+  left: 0;
+  width: $numbering-cell-width;
+  height: 4px;
+  cursor: row-resize;
+
+  &:active {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      height: 4px;
+      width: 100%;
+      cursor: row-resize;
+    }
+
+    &::after {
+      top: 50%;
+      width: 100vw;
+      height: 1px;
+    }
   }
 }

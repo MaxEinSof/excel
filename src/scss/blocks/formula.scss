@@ -12,6 +12,8 @@
   text-align: center;
   color: #888;
   border-right: 1px solid $border-color;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .formula__input {

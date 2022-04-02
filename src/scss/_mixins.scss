@@ -10,6 +10,8 @@
   background: #fff;
   border: none;
   outline: none;
+  -webkit-user-select: none;
+  user-select: none;
 
   &:active,
   &.active {
