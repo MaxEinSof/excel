@@ -4,6 +4,13 @@ export class Header extends ExcelComponent {
   static className = 'header'
   static parentClassName = 'excel__top-container'
 
+  constructor($root, options) {
+    super($root, {
+      name: 'Header',
+      ...options
+    })
+  }
+
   getTemplate() {
     return `
       <input class="header__input" type="text" value="Новая таблица">

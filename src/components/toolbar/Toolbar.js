@@ -4,15 +4,11 @@ export class Toolbar extends ExcelComponent {
   static className = 'toolbar'
   static parentClassName = 'excel__top-container'
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
       name: 'Toolbar',
-      listeners: ['click']
+      ...options
     })
-  }
-
-  onClick(event) {
-
   }
 
   getTemplate() {

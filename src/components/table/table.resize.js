@@ -1,6 +1,6 @@
 import { $ } from '@core/dom'
 
-export default function resize(mouseEvent, $root) {
+export default function resizeTable(mouseEvent, $root) {
   const $resizer = $(mouseEvent.target)
   const resizeType = $resizer.dataset.resize
 
@@ -19,7 +19,7 @@ export default function resize(mouseEvent, $root) {
 
       $parent.css({ width: `${coords.width + delta}px` })
 
-      const columnLetter = $parent.textContent
+      const columnLetter = $parent.text()
       const columnCells = $root.findAll(`[data-column="${columnLetter}"]`)
       columnCells.forEach((cell) => {
         cell.style.width = `${coords.width + delta}px`
