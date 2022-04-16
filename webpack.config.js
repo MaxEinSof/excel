@@ -27,7 +27,7 @@ module.exports = (env, argv) => {
 
   function getPlugins() {
     if (isDev) {
-      basePlugins.push(new ESLintPlugin())
+      basePlugins.push(new ESLintPlugin({ emitError: false }))
     }
 
     return basePlugins

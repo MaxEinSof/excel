@@ -5,10 +5,12 @@ const CODES = {
 
 const columnsNumber = CODES.Z - CODES.A + 1
 
-function getCellTemplate(letter) {
-  return `
-    <div class="table__cell" contenteditable="true" data-column="${letter}"></div>
-  `
+function getCellTemplate(rowNumber) {
+  return function(letter) {
+    return `
+      <div class="table__cell" contenteditable="true" data-column="${letter}" data-id="${letter}:${rowNumber}"></div>
+    `
+  }
 }
 
 function getColumnTemplate(letter) {
@@ -56,12 +58,12 @@ function getAbcRowTemplate() {
 function getCellsRowTemplates(rowsNumber) {
   const templates = []
 
-  for (let i = 0; i < rowsNumber; i++) {
+  for (let rowNumber = 1; rowNumber <= rowsNumber; rowNumber++) {
     const cellsTemplate = getAbcArray()
-        .map(getCellTemplate)
+        .map(getCellTemplate(rowNumber))
         .join('')
 
-    const cellsRowTemplate = getRowTemplate(cellsTemplate, i + 1)
+    const cellsRowTemplate = getRowTemplate(cellsTemplate, rowNumber)
     templates.push(cellsRowTemplate)
   }
 
