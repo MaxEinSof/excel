@@ -1,11 +1,14 @@
 import { $ } from '@core/dom'
 import { Emitter } from '@core/Emitter'
+import { StoreSubscriber } from '@core/StoreSubscriber'
 
 export class Excel {
   constructor(selector, options) {
     this.$appRoot = $(selector)
     this.components = options.components
+    this.store = options.store
     this.emitter = new Emitter()
+    this.subscriber = new StoreSubscriber(this.store)
   }
 
   getContent() {
@@ -15,6 +18,7 @@ export class Excel {
     $contentRoot.append($topContainer)
 
     const componentOptions = {
+      store: this.store,
       emitter: this.emitter
     }
 
@@ -41,10 +45,12 @@ export class Excel {
   render() {
     this.$appRoot.append(this.getContent())
 
+    this.subscriber.subscribeComponents(this.components)
     this.components.forEach((component) => component.init())
   }
 
   destroy() {
+    this.subscriber.unsubscribeFromStore()
     this.components.forEach((component) => component.destroy())
   }
 }
