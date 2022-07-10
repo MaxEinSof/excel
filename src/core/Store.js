@@ -1,4 +1,5 @@
 import { rootReducer } from '@/store/rootReducer'
+import { clone } from '@core/utils'
 
 export class Store {
   constructor(rootReducer, initialState = {}) {
@@ -10,7 +11,7 @@ export class Store {
     this.listeners.push(fn)
 
     return {
-      unsubscribe() {
+      unsubscribe: () => {
         this.listeners = this.listeners.filter((listener) => listener !== fn)
       }
     }
@@ -22,6 +23,6 @@ export class Store {
   }
 
   getState() {
-    return JSON.parse(JSON.stringify(this.state))
+    return clone(this.state)
   }
 }
