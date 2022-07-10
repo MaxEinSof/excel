@@ -1,4 +1,4 @@
-import { TABLE_RESIZE, CHANGE_TEXT, CHANGE_STYLES, APPLY_STYLE, CHANGE_TITLE } from '@/store/types'
+import { TABLE_RESIZE, CHANGE_TEXT, CHANGE_STYLES, APPLY_STYLE, CHANGE_TITLE, CHANGE_DATE } from '@/store/types'
 
 export function rootReducer(state, action) {
   let propName
@@ -40,13 +40,18 @@ export function rootReducer(state, action) {
         ...state,
         title: action.data
       }
+    case CHANGE_DATE:
+      return {
+        ...state,
+        date: new Date().toJSON()
+      }
     default:
       return state
   }
 }
 
 function getValue(state, propName, action) {
-  const value = state[propName] || {}
+  const value = state[propName] ? { ...state[propName] } : {}
 
   if (action.data.ids) {
     action.data.ids.forEach((id) => {
