@@ -1,5 +1,5 @@
 import { Page } from '@core/Page'
-import { Store } from '@core/Store'
+import { Store } from '@core/store/Store'
 import { rootReducer } from '@/store/rootReducer'
 import { normalizeInitialState } from '@/store/initialState'
 import { debounce, storage } from '@core/utils'

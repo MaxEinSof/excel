@@ -1,9 +1,9 @@
-import { rootReducer } from '@/store/rootReducer'
 import { clone } from '@core/utils'
 
 export class Store {
   constructor(rootReducer, initialState = {}) {
     this.state = rootReducer({ ...initialState }, { type: '__INIT__' })
+    this.rootReducer = rootReducer
     this.listeners = []
   }
 
@@ -18,7 +18,7 @@ export class Store {
   }
 
   dispatch(action) {
-    this.state = rootReducer(this.state, action)
+    this.state = this.rootReducer(this.state, action)
     this.listeners.forEach((listener) => listener(this.state))
   }
 
