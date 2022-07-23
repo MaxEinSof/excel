@@ -1,25 +1,28 @@
-import { Page } from '@core/Page'
+import { Page } from '@core/page/Page'
 import { Store } from '@core/store/Store'
 import { rootReducer } from '@/store/rootReducer'
 import { normalizeInitialState } from '@/store/initialState'
-import { debounce, storage } from '@core/utils'
 import { Excel } from '@/components/excel/Excel'
 import { Header } from '@/components/header/Header'
 import { Toolbar } from '@/components/toolbar/Toolbar'
 import { Formula } from '@/components/formula/Formula'
 import { Table } from '@/components/table/Table'
+import { StateProcessor } from '@core/page/StateProcessor'
+import { LocalStorageClient } from '@/shared/LocalStorageClient'
 
 export class ExcelPage extends Page {
-  getRoot() {
-    const params = this.params || Date.now().toString()
-    const state = storage(`excel:${params}`)
+  constructor(param) {
+    super(param)
+
+    this.storeSub = null
+    this.processor = new StateProcessor(new LocalStorageClient(this.params))
+  }
+
+  async getRoot() {
+    const state = await this.processor.get()
     const store = new Store(rootReducer, normalizeInitialState(state))
 
-    const stateListener = debounce((state) => {
-      storage(`excel:${params}`, state)
-    }, 300)
-
-    store.subscribe(stateListener)
+    this.storeSub = store.subscribe(this.processor.listen)
 
     this.excel = new Excel({
       components: [Header, Toolbar, Formula, Table],
@@ -35,5 +38,6 @@ export class ExcelPage extends Page {
 
   destroy() {
     this.excel.destroy()
+    this.storeSub.unsubscribe()
   }
 }

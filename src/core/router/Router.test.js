@@ -3,7 +3,7 @@
  */
 
 import { Router } from '@core/router/Router'
-import { Page } from '@core/Page'
+import { Page } from '@core/page/Page'
 
 class DashboardPage extends Page {
   getRoot() {
